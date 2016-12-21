@@ -108,8 +108,8 @@ module MoSQL
       dbnames.each do |dbname|
         spec = @schema.find_db(dbname)
 
-        if(spec.nil?)
-          log.info("Mongd DB '#{dbname}' not found in config file. Skipping.")
+        if spec.nil?
+          log.info("Mongo DB '#{dbname}' not found in config file. Skipping.")
           next
         end
 
