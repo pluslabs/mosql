@@ -209,7 +209,12 @@ module MoSQL
 
       # Do a deep clone, because we're potentially going to be
       # mutating embedded objects.
-      obj = BSON.deserialize(BSON.serialize(obj))
+      begin
+        obj = BSON.deserialize(BSON.serialize(obj))
+      rescue
+        log.info('Exception serializing/deserializing object')
+        return []
+      end
 
       row = []
       schema[:columns].each do |col|
